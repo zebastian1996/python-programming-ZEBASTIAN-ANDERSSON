@@ -68,7 +68,6 @@ for testpunkt in test_data:
 
     grannar.sort(key=lambda x: x[0])
 
-
     lista_pikatchu = []
     lista_pichu = []
     mängden_närmast = grannar[:10]
@@ -85,7 +84,6 @@ for testpunkt in test_data:
             distan_pishu += i
 
     if len(lista_pichu) == len(lista_pikatchu):
-        print("lika många av båda nära")
         if distna_pika < distan_pishu:
             print(f"Pikachu\n") 
             plt.scatter(test_x,test_y,c="Red", edgecolors="black", marker="X", s=60, linewidths=2)
@@ -105,5 +103,3 @@ plt.xlabel("Pikachu=Röd      Pichu=Turkos      X=test data ", size=14,)
 plt.scatter(pikachu_x,pikachu_y, c="red", edgecolors="black")
 plt.scatter(pichu_x,pichu_y,c="Turquoise", edgecolors="black")
 plt.show()
-
-
