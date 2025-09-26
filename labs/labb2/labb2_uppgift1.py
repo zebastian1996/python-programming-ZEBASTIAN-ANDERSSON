@@ -27,8 +27,8 @@ pichu_y = (pichu_data[" height (cm)"])
 # Error hanterare/ tar in inputs från användaren
 while True:
     try:
-        x = float(input("skriv in width: "))
-        y = float(input("skriv in height: "))
+        x = float(input("skriv in bredd: "))
+        y = float(input("skriv in höjd: "))
         print()
         if 0 > x or y < 0:
             print("du kan inte mata in negativ nummer så försök igen och tänk på att det behöver vara positivt")

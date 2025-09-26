@@ -8,8 +8,7 @@ def kalkulator(punkt1_test_data,punkt2_känd_data):
     return avståndet
 
 # tar in dom kända data punkterna
-#fixa här
-data = pd.read_csv(r"C:\Users\stegi\Desktop\skoluppgifter\första året\programmering_kod\datapoints2.txt")
+data = pd.read_csv(r"C:\Users\stegi\Documents\github saker\python-programming-ZEBASTIAN-ANDERSSON\labs\labb2\datapoints2.txt")
 
 # Få ut x och y till pikatchu
 pikachu_data = data[data[' label (0-pichu'] == 1]
