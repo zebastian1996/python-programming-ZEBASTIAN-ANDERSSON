@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import pandas as pd 
 import csv
 
-
 # reading the data we put in
 def read_data(file_path):
     data = pd.read_csv(file_path, header=None)
@@ -29,7 +28,6 @@ def sort_points(file_path):
 
 # you need to write in your own patch way in here
 file_path = (r"C:\Users\stegi\Desktop\skoluppgifter\första året\programmering_kod\labb3\unlabelled_data.csv")
-
 
 # my lists for seperate data points
 down_list = []
