@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd 
 import csv
 
+
 # reading the data we put in
 def read_data(file_path):
     data = pd.read_csv(file_path, header=None)
