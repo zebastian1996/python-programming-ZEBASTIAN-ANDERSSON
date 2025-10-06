@@ -26,8 +26,8 @@ def sort_points(file_path):
         for row in up_list:
             writer.writerow(row)
 
-# you need to write in your own patch way in here
-file_path = (r"C:\Users\stegi\Desktop\skoluppgifter\första året\programmering_kod\labb3\unlabelled_data.csv")
+# you need to write in your own patch way in here to the file
+file_path = (r"put the path way to your unlabelled file here to get things going")
 
 # my lists for seperate data points
 down_list = []
@@ -36,7 +36,6 @@ up_list = []
 data = read_data(file_path)
 line_separator(data)
 sort_points(file_path)
-
 
 # getting my cordinates to plot
 x1,y1,_ = zip(*up_list)
