@@ -284,9 +284,8 @@
 
 
 
-import numpy as np
 
-def distance(x,y):
-    return np.sqrt(x+y)
-
-print(distance(0.5, 0.5))
+# lär mig mer om filer och filhantering
+# lär mig mer om pandas
+# lär mig mer om sklearn
+# mer om matplot för att skriva ut

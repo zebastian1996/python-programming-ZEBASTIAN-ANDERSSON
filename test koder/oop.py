@@ -52,6 +52,8 @@ age = input("skriv in din ålder: ")
 email = input("skriv in din email: ")
 
 
+
+
 person1.age = int(age)
 person1.email = email
 person1.name = name
