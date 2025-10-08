@@ -64,3 +64,8 @@ plt.xlabel("Pikachu=Röd      Pichu=Turkos      X=test data ", size=14,)
 plt.scatter(pikachu_x,pikachu_y, c="red", edgecolors="black")
 plt.scatter(pichu_x,pichu_y,c="Turquoise", edgecolors="black")
 plt.show()
+
+
+
+# glömde skriva det men suttit mycket med jakob och sebastian så vi har "pickt each others brain" en del men 
+# inte direkt tagit någon kod från varandra men kan va bra att nämna
