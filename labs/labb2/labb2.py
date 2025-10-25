@@ -5,28 +5,24 @@ import numpy as np
 #kollar avstånd 
 def kalkulator(test_data,känd_data):
     return np.sqrt(((känd_data[0]-test_data[0])**2)+((känd_data[1]-test_data[1])**2))
-     
+
+# separerar datan
+def sortera_data(datan):
+    nya = np.array(datan)
+    for data_points in nya:
+        if 0 in data_points[2:3]:
+            pichu.append(data_points[0:2])
+        else:
+            pikachu.append(data_points[0:2])
 
 # tar in dom kända data punkterna
 data = pd.read_csv(r"C:\Users\frolu\OneDrive\Skrivbord\skol kodning\labb2\datapoints.txt")
 
-# Få ut x och y till pikatchu
-pikachu_data = data[data[' label (0-pichu'] == 1]
-pikachu_x = pikachu_data["(width (cm)"]
-pikachu_y = pikachu_data[" height (cm)"]
-
-# Få ut x och y till pitchu
-pichu_data = data[data[' label (0-pichu']== 0]
-pichu_x = (pichu_data["(width (cm)"])
-pichu_y = (pichu_data[" height (cm)"])
-
-# Error hanterare / här vi skriver in input 
+# Error hanterare / här vi skriver in input   
 while True:
-    try:
-        # x = float(input("skriv in bredd: "))
-        # y = float(input("skriv in höjd: "))
-        x = 25
-        y = 32
+    try:          
+        x = 27 #x = float(input("skriv in bredd: "))
+        y = 32 #y = float(input("skriv in höjd: "))
         if 0 > x or y < 0:
             print("du kan inte mata in negativ nummer så försök igen och tänk på att det behöver vara positivt")
         elif 0 == x or y == 0:
@@ -37,65 +33,53 @@ while True:
     except ValueError:
         print("text eller multiplikation av olika slag tillåts inte, va vänligen och skriv in ett positivt tal")
 
-
-#vår test data/egna input
+# samling och sortering av test,pichu och pikachu data
 test_data = [(25, 32),(24.2, 31.5),(22, 34),(20.5, 34), (x,y)]
+pichu = []
+pikachu = []
+sortera_data(data)
 
-
-# kalkylerar ut vem som är närmast
-for testpunkt in test_data:
+for xTest,yTest in test_data:
     grannar = []
-    
-    #kollar emot pikachos data
-    for x, y in zip(pikachu_x, pikachu_y):
-        avståndet = kalkulator(testpunkt, (x, y)) 
-        grannar.append((avståndet, 1))
+    for i in pichu:
+        grannar.append(((kalkulator((xTest,yTest), i)),0))
+    for i in pikachu:
+        grannar.append(((kalkulator((xTest,yTest), i)), 1))
 
-    #kollar emot pichus data
-    for x, y in zip(pichu_x, pichu_y):
-        avståndet = kalkulator(testpunkt, (x,y))
-        grannar.append((avståndet, 0))
+    # lista samt distans som en backup om dom är likanära för att få bästa resultatet 
+    mängd_pikachu= []
+    mängd_pichu = []
+    distna_pikachu = 0
+    distan_pishu = 0 
 
-    test_x, test_y = testpunkt
-    print(f"test måtten: vikt:{test_x} höjd:{test_y} = ", end="")
-
-    grannar.sort(key=lambda x: x[0])    #fått dena kod snutten via chatgpt som sorterar min lista
-
-    # listor för vem som är närmast
-    lista_pikatchu = []
-    lista_pichu = []
-    mängden_närmast = grannar[:10]
-    # om det är lika många (5/5) av båda närmast en punkt så räknar vi det sammanlagda avståndet
-    distna_pika = 0
-    distan_pishu = 0
-
-    for i,slutsats in mängden_närmast:
-        if slutsats == 1:
-            lista_pikatchu.append(slutsats)
-            distna_pika += i
+    grannar.sort(key=lambda x: x[0])
+    for i,granne in grannar[0:10]:
+        if granne == 1:
+            mängd_pikachu.append(granne)
         else:
-            lista_pichu.append(slutsats)
-            distan_pishu += i
+            mängd_pichu.append(granne)
 
-    #kollar vilken typ det finns mest av eller om det är lika och räknar ut vilken pokemon det ska bli
-    if len(lista_pichu) == len(lista_pikatchu): 
-        print("lika många av båda nära")
-        if distna_pika < distan_pishu:
-            print(f"Pikachu\n") 
-            plt.scatter(test_x,test_y,c="Red", edgecolors="black", marker="X", s=60, linewidths=2)
+    # kollar vem som är närmast och avgör vilken titel den får
+    if len(mängd_pikachu) == len(mängd_pichu):
+        if distna_pikachu < distan_pishu:
+           print(f"det blev en pikachu")
+           plt.scatter(xTest,yTest,c="red", edgecolors="black", marker="X", s=95)
         else:
-            print(f"Pichu\n")
-            plt.scatter(test_x,test_y,c="Turquoise", edgecolors="black", marker="X", s=80, linewidths=2)
-    elif len(lista_pikatchu) > len(lista_pichu):
-        print(f"Pikachu\n") 
-        plt.scatter(test_x,test_y,c="Red", edgecolors="black", marker="X", s=60, linewidths=2)
+            print(f"det blev en pichu")
+            plt.scatter(xTest,yTest,c="blue", edgecolors="black", marker="X",s=95) 
+            
+    elif len(mängd_pikachu) > len(mängd_pichu):
+        print(f"det blev en pikachu")
+        plt.scatter(xTest,yTest,c="red", edgecolors="black", marker="X", s=95)
     else:
-        print(f"Pichu\n")
-        plt.scatter(test_x,test_y,c="Turquoise", edgecolors="black", marker="X", s=80, linewidths=2)
+        print(f"det blev en pichu")
+        plt.scatter(xTest,yTest,c="blue", edgecolors="black", marker="X",s=95)
 
+# skapar kordinaterna och plottar
+x,y=zip(*pichu)
+x1,y1=zip(*pikachu)
 
-plt.title("här har vi pikatchu och pitchu")
-plt.xlabel("Pikachu=Röd      Pichu=Turkos      X=test data ", size=14,)
-plt.scatter(pikachu_x,pikachu_y, c="red", edgecolors="black")
-plt.scatter(pichu_x,pichu_y,c="Turquoise", edgecolors="black")
-plt.show()
+plt.scatter(x,y,c="blue", edgecolors="black")
+plt.scatter(x1,y1,c="red", edgecolors="black")
+plt.title("röd = pikachu            blå = pichu            x = testpunkter")
+plt.show() 
