@@ -34,32 +34,32 @@ import seaborn as sns
 
 
 
-# path = r"C:\Users\stegi\Documents\github saker\python-programming-ZEBASTIAN-ANDERSSON\databehandling\komtopp50_2020.xlsx"
+path = r"C:\Users\stegi\Documents\github saker\python-programming-ZEBASTIAN-ANDERSSON\databehandling\komtopp50_2020.xlsx"
 
-# df = pd.read_excel(path, sheet_name="Totalt", header=6, usecols="A:F")
-# df.columns = ["Rang 2020",        "Rang 2019",    "Kommun", "Folkmängd 2020",	"Folkmängd 2019",	"Förändring"]
-# print(df.head())
-# df.info()
+df = pd.read_excel(path, sheet_name="Totalt", header=6, usecols="A:F")
+df.columns = ["Rang 2020",        "Rang 2019",    "Kommun", "Folkmängd 2020",	"Folkmängd 2019",	"Förändring"]
+print(df.head())
+df.info()
+print("\n")
 # print("\n")
-# # print("\n")
-# print(df.sort_values("Rang 2020", ascending=False).head(5))
+print(df.sort_values("Rang 2020", ascending=False).head(5))
 
-# print("\n")
-# print(df["Folkmängd 2020"].sum())
-# print(df["Folkmängd 2019"].sum())
-
+print("\n")
+print(df["Folkmängd 2020"].sum())
+print(df["Folkmängd 2019"].sum())
 
 
-# fig, axes = plt.subplots(1, 2, figsize=(12,5))
 
-# top5 = df.sort_values("Rang 2020").head(5)
-# low5 = df.sort_values("Rang 2020").tail(5)
+fig, axes = plt.subplots(1, 2, figsize=(12,5))
+
+top5 = df.sort_values("Rang 2020").head(5)
+low5 = df.sort_values("Rang 2020").tail(5)
 
 
-# axes[0].bar(top5["Kommun"],top5["Folkmängd 2020"])
-# axes[1].bar(low5["Kommun"], low5["Folkmängd 2020"])
+axes[0].bar(top5["Kommun"],top5["Folkmängd 2020"])
+axes[1].bar(low5["Kommun"], low5["Folkmängd 2020"])
 
-# plt.show()
+plt.show()
 
 
 #_____________________________________Cities in Sweden - gender_______________________________________________
